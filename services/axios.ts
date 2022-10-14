@@ -1,17 +1,16 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { parseCookies } from "nookies";
 
-export function getAPIClient(ctx?: any) {
-  const { token } = parseCookies(ctx)
+export function getAPIClient(ctx?: any): AxiosInstance {
+  const { "nextauth.token": token } = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: 'http://localhost:8080'
-  })
+    baseURL: process.env.BASE_URL,
+  });
 
   if (token) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
   return api;
 }
-

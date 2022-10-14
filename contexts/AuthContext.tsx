@@ -1,14 +1,16 @@
+import Router from 'next/router';
+import { parseCookies, setCookie } from 'nookies';
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { setCookie, parseCookies } from 'nookies'
-import Router from 'next/router'
 
-import { recoverUserInformation, signInRequest } from "../services/auth";
 import { api } from "../services/api";
+import { recoverUserInformation, signInRequest } from "../services/auth";
 
 type User = {
   name: string;
   email: string;
-}
+  id: string;
+  createdAt: string;
+} | null;
 
 type SignInData = {
   email: string;
@@ -19,6 +21,7 @@ type AuthContextType = {
   isAuthenticated: boolean;
   user: User;
   signIn: (data: SignInData) => Promise<void>
+  signOut: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextType)
@@ -32,7 +35,7 @@ export function AuthProvider({ children } : { children: ReactNode }) {
     const { 'nextauth.token': token } = parseCookies()
 
     if (token) {
-      recoverUserInformation().then((response : any)  => {
+      recoverUserInformation(token).then((response : any)  => {
         setUser(response.user)
       })
     }
@@ -45,18 +48,24 @@ export function AuthProvider({ children } : { children: ReactNode }) {
     })
 
     setCookie(undefined, 'nextauth.token', token, {
-      maxAge: 60 * 60 * 1, // 1 hour
+      maxAge: 60 * 60 * 6, // 6 hours
     })
-
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
     setUser(user)
+    Router.push('/decks');
+  }
 
-    Router.push('/dashboard');
+  async function signOut() {
+    setUser(null)
+    setCookie(undefined, 'nextauth.token', '', {
+      maxAge: -1,
+    })
+    Router.push('/');
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
