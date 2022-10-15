@@ -45,6 +45,7 @@ const CommunityPage: NextPage = () => {
                     deckName={deck.name}
                     game={deck.game}
                     deckId={deck.id}
+                    owner=""
                   />
                 </GridItem>
               ))
