@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { getAPIClient } from "../../services/axios";
 import deckService from "../../services/deckService";
 import { Decks } from "../../types/types";
-import { Container, Title } from "./styles";
+import Container, { Title } from "./styles";
 
 const CommunityPage: NextPage = () => {
   const { user } = useContext(AuthContext);

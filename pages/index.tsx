@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { parseCookies } from "nookies";
 import { getAPIClient } from "../services/axios";
-import { Container, Desc, LandingImage, Subtitle, Title } from "./styles";
+import Container, { Desc, LandingImage, Subtitle, Title } from "./styles";
 
 const LandingPage: NextPage = () => {
   return (

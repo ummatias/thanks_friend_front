@@ -42,3 +42,5 @@ export const LandingImage = styled.img`
   width: 46rem;
   height: 31rem;
 `;
+
+export default Container;

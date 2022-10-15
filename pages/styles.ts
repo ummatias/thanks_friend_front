@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -36,3 +36,5 @@ export const LandingImage = styled.img`
   width: 46rem;
   height: 31rem;
 `;
+
+export default Container;

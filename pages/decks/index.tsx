@@ -25,7 +25,7 @@ import { getAPIClient } from "../../services/axios";
 import deckService from "../../services/deckService";
 import { Decks } from "../../types/types";
 import { validateName } from "../../util/validation";
-import { Container, Title } from "./styles";
+import Container, { Title } from "./styles";
 
 const DecksPage: NextPage = () => {
   const { user } = useContext(AuthContext);

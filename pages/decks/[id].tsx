@@ -25,7 +25,7 @@ import { getAPIClient } from "../../services/axios";
 import cardService from "../../services/cardService";
 import deckService from "../../services/deckService";
 import { Cards, Deck } from "../../types/types";
-import { Container, Title } from "./styles";
+import Container, { Title } from "./styles";
 
 const DeckPage = ({ query }: { query: any }) => {
   const { user } = useContext(AuthContext);
