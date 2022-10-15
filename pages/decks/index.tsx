@@ -83,6 +83,7 @@ const DecksPage: NextPage = () => {
                 <GridItem key={index} w="100%" padding="0 2rem">
                   <DeckPost
                     deckName={deck.name}
+                    owner={user?.name}
                     game={deck.game}
                     deckId={deck.id}
                   />

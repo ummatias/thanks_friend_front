@@ -4,6 +4,7 @@ import {
   Center,
   Heading,
   Stack,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import Link from "next/link";
@@ -13,11 +14,14 @@ export const DeckPost = ({
   deckName,
   game,
   deckId,
+  owner,
 }: {
   deckName: string;
   game: string;
   deckId: string;
+  owner: string | undefined;
 }) => {
+  console.log(deckId);
   return (
     <Center py={6}>
       <Box
@@ -33,8 +37,9 @@ export const DeckPost = ({
         <Box p={6}>
           <Stack spacing={0} align={"center"}>
             <Heading fontSize={"2xl"} fontWeight={500} fontFamily={"body"}>
-              {deckName}
+              {deckName.length <= 15 ? deckName : deckName.slice(0, 15) + "..."}
             </Heading>
+            <Text color={"gray.500"}>{owner}</Text>
           </Stack>
 
           <Link href={{ pathname: "/decks/[id]", query: { id: deckId } }}>

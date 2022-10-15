@@ -130,6 +130,7 @@ const DeckPage = ({ query }: { query: any }) => {
                     color={card.color}
                     id={card.id}
                     onDelete={handleDeleteCard}
+                    owner={user?.id === deck.userId}
                   />
                 </GridItem>
               ))
