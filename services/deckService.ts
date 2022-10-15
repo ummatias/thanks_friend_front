@@ -7,9 +7,11 @@ const deckService = {
     publicDeck: boolean | undefined
   ) => {
     try {
+      console.log("userId", userId);
       const response = await api.get(
         publicDeck ? "/decks/public/" : `/decks/${userId}`
       );
+      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);

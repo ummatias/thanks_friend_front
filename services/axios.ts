@@ -5,7 +5,7 @@ export function getAPIClient(ctx?: any): AxiosInstance {
   const { "nextauth.token": token } = parseCookies(ctx);
 
   const api = axios.create({
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
   });
 
   if (token) {

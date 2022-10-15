@@ -18,6 +18,7 @@ const CommunityPage: NextPage = () => {
   useEffect(() => {
     setLoading(true);
     deckService.getDecks(undefined, true).then((res) => {
+      console.log(res);
       setData(res.decks);
       setLoading(false);
     });
