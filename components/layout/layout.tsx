@@ -1,20 +1,19 @@
-import Navbar from "../navbar/navbar";
 import Footer from "../footer/footer";
-import { LayoutContainer } from './styles';
+import Navbar from "../navbar/navbar";
+import { LayoutContainer } from "./styles";
 
 type LayoutProps = {
-    children: React.ReactNode;
-    logged: boolean;
-}
+  children: React.ReactNode;
+};
 
-const Layout = ({ children, logged } : LayoutProps) => {
-    return (
-        <LayoutContainer>
-            <Navbar logged={logged}/>
-            {children}
-            <Footer/>
-        </LayoutContainer>
-    )
-}
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <LayoutContainer>
+      <Navbar />
+      {children}
+      <Footer />
+    </LayoutContainer>
+  );
+};
 
 export default Layout;

@@ -4,10 +4,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Logo, NavbarButtons, NavbarContainer } from "./styles";
 
-type NavbarProps = {
-  logged: boolean;
-};
-
 const Navbar = () => {
   const { user, signOut } = useContext(AuthContext);
 
