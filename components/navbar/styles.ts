@@ -14,7 +14,8 @@ export const NavbarButtons = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 1rem;
   width: 25rem;
 `;
 

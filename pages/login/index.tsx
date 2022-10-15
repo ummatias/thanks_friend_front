@@ -1,18 +1,20 @@
-import { Button, Box, Link } from '@chakra-ui/react'
-import { Formik, Form } from 'formik'
-import type { NextPage } from 'next'
+import { Box, Button, Link } from '@chakra-ui/react'
+import { Form, Formik } from 'formik'
+import type { GetServerSideProps, NextPage } from 'next'
 import NextLink from 'next/link'
-import userService from '../../services/userService'
-import { Container,  FormContainer, TitlesContainer, Title, Subtitle, LandingImage } from './styles'
+import { parseCookies } from 'nookies'
+import { useContext } from 'react'
 import FormItem from '../../components/formItem'
+import { AuthContext } from '../../contexts/AuthContext'
+import { getAPIClient } from '../../services/axios'
+import { Container, FormContainer, LandingImage, Subtitle, Title, TitlesContainer } from './styles'
 
 const LoginPage: NextPage = () => {
 
+    const { signIn } = useContext(AuthContext)
+
     const handleSubmit = async (data: any) => {
-        const user = await userService.login(data)
-        if (user) {
-            window.location.href = '/decks'
-        }
+        await signIn(data)
     }
 
     return (
@@ -44,4 +46,22 @@ const LoginPage: NextPage = () => {
     )
 }
 
-export default LoginPage                    
+export default LoginPage;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const apiClient = getAPIClient(ctx);
+    const { ['nextauth.token']: token } = parseCookies(ctx)
+  
+    if (token) {
+      return {
+        redirect: {
+          destination: '/decks',
+          permanent: false,
+        }
+      }
+    }
+    
+    return {
+      props: {}
+    }
+}
