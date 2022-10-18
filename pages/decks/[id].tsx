@@ -2,10 +2,11 @@ import { AddIcon, CopyIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
+  Flex,
   FormControl,
-  Grid,
   GridItem,
   HStack,
+  SimpleGrid,
   Spinner,
   Stack,
   Textarea,
@@ -25,7 +26,7 @@ import { getAPIClient } from "../../services/axios";
 import cardService from "../../services/cardService";
 import deckService from "../../services/deckService";
 import { Cards, Deck } from "../../types/types";
-import Container, { Title } from "./styles";
+import { Title } from "./styles";
 
 const DeckPage = ({ query }: { query: any }) => {
   const { user } = useContext(AuthContext);
@@ -73,12 +74,11 @@ const DeckPage = ({ query }: { query: any }) => {
   }, []);
 
   return (
-    <Container>
+    <Flex direction={"column"} align={"center"} justify={"center"}>
       <HStack
         w="100%"
-        justifyContent="space-between"
-        marginTop="4rem"
-        padding="0 2rem"
+        justifyContent={["center", "space-between"]}
+        paddingX={["1rem", "4rem", "10rem", "12rem"]}
       >
         <Title>{deck.name}</Title>
         <HStack>
@@ -121,7 +121,11 @@ const DeckPage = ({ query }: { query: any }) => {
       {isLoading ? (
         <Spinner size="xl" color="teal" marginTop="5rem" />
       ) : (
-        <Grid templateColumns="repeat(3, 1fr)" w="100%">
+        <SimpleGrid
+          columns={[1, 1, 2, 3]}
+          w="100%"
+          paddingX={["1rem", "2rem", "4rem", "12rem"]}
+        >
           {cards.length > 0
             ? cards.map((card, index) => (
                 <GridItem key={index} w="100%" padding="0 2rem">
@@ -135,7 +139,7 @@ const DeckPage = ({ query }: { query: any }) => {
                 </GridItem>
               ))
             : null}
-        </Grid>
+        </SimpleGrid>
       )}
       <AddModal isOpen={isOpen} onClose={onClose}>
         <Formik
@@ -200,7 +204,7 @@ const DeckPage = ({ query }: { query: any }) => {
           )}
         </Formik>
       </AddModal>
-    </Container>
+    </Flex>
   );
 };
 

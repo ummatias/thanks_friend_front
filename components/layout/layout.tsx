@@ -1,6 +1,6 @@
+import { Flex } from "@chakra-ui/react";
 import Footer from "../footer/footer";
 import Navbar from "../navbar/navbar";
-import { LayoutContainer } from "./styles";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -8,11 +8,11 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <LayoutContainer>
+    <Flex direction={"column"} w={"100%"} h={"100vh"}>
       <Navbar />
       {children}
       <Footer />
-    </LayoutContainer>
+    </Flex>
   );
 };
 

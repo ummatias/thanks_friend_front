@@ -2,12 +2,13 @@ import { AddIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
+  Flex,
   FormControl,
-  Grid,
   GridItem,
   HStack,
   Icon,
   Select,
+  SimpleGrid,
   Spinner,
   Stack,
   useDisclosure,
@@ -25,7 +26,7 @@ import { getAPIClient } from "../../services/axios";
 import deckService from "../../services/deckService";
 import { Decks } from "../../types/types";
 import { validateName } from "../../util/validation";
-import Container, { Title } from "./styles";
+import { Title } from "./styles";
 
 const DecksPage: NextPage = () => {
   const { user } = useContext(AuthContext);
@@ -56,12 +57,11 @@ const DecksPage: NextPage = () => {
   }, []);
 
   return (
-    <Container>
+    <Flex direction={"column"} align={"center"} justify={"center"}>
       <HStack
         w="100%"
-        justifyContent="space-between"
-        marginTop="4rem"
-        padding="0 2rem"
+        justifyContent={["center", "space-between"]}
+        paddingX={["1rem", "4rem", "10rem", "12rem"]}
       >
         <Title>Your Decks</Title>
         <Button
@@ -77,7 +77,11 @@ const DecksPage: NextPage = () => {
       {isLoading ? (
         <Spinner size="xl" color="teal" marginTop="5rem" />
       ) : (
-        <Grid templateColumns="repeat(3, 1fr)" w="100%">
+        <SimpleGrid
+          columns={[1, 1, 2, 3]}
+          w="100%"
+          paddingX={["1rem", "2rem", "4rem", "12rem"]}
+        >
           {data.length > 0
             ? data.map((deck, index) => (
                 <GridItem key={index} w="100%" padding="0 2rem">
@@ -90,7 +94,7 @@ const DecksPage: NextPage = () => {
                 </GridItem>
               ))
             : null}
-        </Grid>
+        </SimpleGrid>
       )}
       <AddModal isOpen={isOpen} onClose={onClose}>
         <Formik
@@ -192,7 +196,7 @@ const DecksPage: NextPage = () => {
           )}
         </Formik>
       </AddModal>
-    </Container>
+    </Flex>
   );
 };
 

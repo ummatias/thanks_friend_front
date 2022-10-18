@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack, Spinner } from "@chakra-ui/react";
+import { Flex, GridItem, HStack, SimpleGrid, Spinner } from "@chakra-ui/react";
 import type { GetServerSideProps, NextPage } from "next";
 import { parseCookies } from "nookies";
 import { useContext, useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { getAPIClient } from "../../services/axios";
 import deckService from "../../services/deckService";
 import { Decks } from "../../types/types";
-import Container, { Title } from "./styles";
+import { Title } from "./styles";
 
 const CommunityPage: NextPage = () => {
   const { user } = useContext(AuthContext);
@@ -18,26 +18,28 @@ const CommunityPage: NextPage = () => {
   useEffect(() => {
     setLoading(true);
     deckService.getDecks(undefined, true).then((res) => {
-      console.log(res);
       setData(res.decks);
       setLoading(false);
     });
   }, []);
 
   return (
-    <Container>
+    <Flex direction={"column"} align={"center"} justify={"center"}>
       <HStack
         w="100%"
-        justifyContent="center"
-        marginTop="4rem"
-        padding="0 2rem"
+        justifyContent={["center", "space-between"]}
+        paddingX={["1rem", "4rem", "10rem", "12rem"]}
       >
         <Title>Community Decks</Title>
       </HStack>
       {loading ? (
         <Spinner size="xl" color="teal" marginTop="5rem" />
       ) : (
-        <Grid templateColumns="repeat(3, 1fr)" w="100%">
+        <SimpleGrid
+          columns={[1, 1, 2, 3]}
+          w="100%"
+          paddingX={["1rem", "2rem", "4rem", "12rem"]}
+        >
           {data.length > 0
             ? data.map((deck, index) => (
                 <GridItem key={index} w="100%" padding="0 2rem">
@@ -50,9 +52,9 @@ const CommunityPage: NextPage = () => {
                 </GridItem>
               ))
             : null}
-        </Grid>
+        </SimpleGrid>
       )}
-    </Container>
+    </Flex>
   );
 };
 
