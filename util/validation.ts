@@ -20,5 +20,4 @@ const validateName = (name: string) => {
   }
 };
 
-
 export { validateEmail, validatePassword, validateName };
