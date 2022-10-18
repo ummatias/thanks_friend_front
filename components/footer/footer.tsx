@@ -2,19 +2,14 @@ import { Box, Image } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
-    <Box
-      display="block"
-      w={"100vw"}
-      zIndex={-1}
-      position="absolute"
-      overflow={"hidden"}
-    >
+    <Box as="footer" position="relative" zIndex="docked" w="100%" h="300px">
       <Image
-        position={"absolute"}
-        minW={"100%"}
-        bottom={0}
         src="/wave.svg"
-        alt="logo"
+        alt="wave"
+        position="absolute"
+        bottom="0"
+        left="0"
+        w="100vw"
       />
     </Box>
   );

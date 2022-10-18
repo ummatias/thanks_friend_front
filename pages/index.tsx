@@ -7,9 +7,8 @@ import { getAPIClient } from "../services/axios";
 const LandingPage: NextPage = () => {
   return (
     <Flex
-      direction={["column", "row"]}
-      paddingX={["0rem", "12rem"]}
-      marginBottom={[0, "15rem"]}
+      direction={["column", "column", "row"]}
+      paddingX={["0rem", "6rem", "12rem"]}
       align="center"
       justify={["space-around", "space-between"]}
       h="80%"
