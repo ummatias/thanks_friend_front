@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@fontsource/roboto": "^4.5.8",
     "@types/axios": "^0.14.0",
     "@types/cookie": "^0.5.1",
     "@types/cookies": "^0.7.7",

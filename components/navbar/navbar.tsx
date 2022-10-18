@@ -22,7 +22,7 @@ const Navbar = () => {
       {user ? (
         <>
           <Link href={"/community"}>
-            <Button colorScheme="teal" variant="outline">
+            <Button colorScheme="teal" variant="outline" w={["100%", "12rem"]}>
               Community
             </Button>
           </Link>
@@ -30,6 +30,7 @@ const Navbar = () => {
             colorScheme="teal"
             variant="outline"
             onClick={() => signOut()}
+            w={["100%", "12rem"]}
           >
             Sign Out
           </Button>
@@ -37,20 +38,12 @@ const Navbar = () => {
       ) : (
         <>
           <Link href={"/signup"}>
-            <Button
-              colorScheme="teal"
-              variant="outline"
-              style={{ width: "12rem" }}
-            >
+            <Button colorScheme="teal" variant="outline" w={["100%", "12rem"]}>
               Sign Up
             </Button>
           </Link>
           <Link href={"/login"}>
-            <Button
-              colorScheme="teal"
-              variant="solid"
-              style={{ width: "12rem" }}
-            >
+            <Button colorScheme="teal" variant="solid" w={["100%", "12rem"]}>
               Login
             </Button>
           </Link>
@@ -91,7 +84,7 @@ const Navbar = () => {
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
+          <Box display={{ md: "none" }} w="100%">
             <Stack as={"nav"} spacing={4}>
               <NavLinks />
             </Stack>

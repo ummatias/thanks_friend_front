@@ -1,12 +1,15 @@
-import Image from "next/image";
-import { FooterContainer, Wave } from './styles'
+import { Image } from "@chakra-ui/react";
 
 const Footer = () => {
-    return (
-        <FooterContainer>
-            <Wave src="/wave.svg" alt="logo" />
-        </FooterContainer>
-    )
-    }
+  return (
+    <Image
+      position={"absolute"}
+      minW={"100%"}
+      bottom={0}
+      src="/wave.svg"
+      alt="logo"
+    />
+  );
+};
 
-export default Footer
+export default Footer;
